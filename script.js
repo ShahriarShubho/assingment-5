@@ -5,14 +5,17 @@ const button = document.getElementById("search_button").addEventListener("click"
     const foodName = document.getElementById("food-name").value;
         if(foodName === ""){
         swal("No Word", "Please type a valid name", "info");
+    }else{
+
+        const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${foodName}`
+        fetch(url)
+        .then(res => res.json())
+        .then(data =>displayData(data.meals))
+        .catch(err => swal("Opppss!!!", "Wrong Food name, Please type valid food name", "error"))
+        foodContainer.innerHTML = "";
+        foodDetailsDiv.innerHTML = "";
     }
-    const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${foodName}`
-    fetch(url)
-    .then(res => res.json())
-    .then(data =>displayData(data.meals))
-    .catch(err => swal("Opppss!!!", "Wrong Food name, Please type valid food name", "error"))
-    foodContainer.innerHTML = "";
-  
+
    
 })
 //This function for displaying food data on click of search
@@ -25,7 +28,7 @@ const displayData = foodName =>{
         const food = `
             <img src ="${foodInfo.strMealThumb}">
             <h4 class="name">${foodInfo.strMeal}</h4>
-            <button onclick="showDetails('${foodInfo.strMeal}')"> details </button>
+            <button class="btn btn-info rounded m-auto" onclick="showDetails('${foodInfo.strMeal}')"> details </button>
         `
         foodDiv.innerHTML = food;
         foodContainer.appendChild(foodDiv)
