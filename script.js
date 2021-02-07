@@ -3,13 +3,16 @@ const foodDetailsDiv = document.getElementById("food-details")
 
 const button = document.getElementById("search_button").addEventListener("click", function(){
     const foodName = document.getElementById("food-name").value;
+        if(foodName === ""){
+        swal("No Word", "Please type a valid name", "info");
+    }
     const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${foodName}`
     fetch(url)
     .then(res => res.json())
     .then(data =>displayData(data.meals))
     .catch(err => swal("Opppss!!!", "Wrong Food name, Please type valid food name", "error"))
     foodContainer.innerHTML = "";
-    foodDetailsDiv.innerHTML = ""
+  
    
 })
 //This function for displaying food data on click of search
