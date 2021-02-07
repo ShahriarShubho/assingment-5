@@ -1,0 +1,22 @@
+.food-div{  
+    margin: 20px;
+    width: 300px;
+    background-color: lightgray;
+    border-radius: 20px;
+}
+#food-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+img{
+    width: 100%;
+}
+.name{
+    margin-top: 10px;
+    text-align: center;
+}
+#food-details{
+    width: 500px;
+    padding: 15px;
+
+}
