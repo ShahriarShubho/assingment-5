@@ -23,3 +23,6 @@ img{
 #food-click-div{
     cursor: pointer;
 }
+#search-heading{
+    display: none;
+}
