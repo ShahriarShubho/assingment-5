@@ -22,6 +22,7 @@ const button = document.getElementById("search_button").addEventListener("click"
 //This function for displaying food data on click of search
 const displayData = foodName =>{
     searchHeading.style.display = "block"
+    
      foodName.forEach(foodInfo => {
         const foodDiv = document.createElement("div");
         foodDiv.className = "food-div"
