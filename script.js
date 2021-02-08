@@ -26,10 +26,13 @@ const displayData = foodName =>{
         foodDiv.className = "food-div"
 
         const food = `
+        <div id="food-click-div" onclick="showDetails('${foodInfo.strMeal}')">
             <img src ="${foodInfo.strMealThumb}">
-            <h4 class="name">${foodInfo.strMeal}</h4>
-            <button class="btn btn-info rounded m-auto" onclick="showDetails('${foodInfo.strMeal}')"> details </button>
+            <h4 class="food-name">${foodInfo.strMeal}</h4>  
+        </div>
         `
+
+
         foodDiv.innerHTML = food;
         foodContainer.appendChild(foodDiv)
         document.getElementById("food-name").value = ""
@@ -45,6 +48,7 @@ const displayData = foodName =>{
     fetch(url)
     .then(res => res.json())
     .then(data => foodDataDetails(data.meals[0]))
+    .catch(err => swal("No Word", "Something missing, Please try again latter", "info"))
 }
 
 //this function for food details data
@@ -56,12 +60,13 @@ const foodDataDetails = food =>{
 
   foodDetailsSubDiv.innerHTML = `
   <img src ="${food.strMealThumb}">
-  <h3 class="name">${food.strMeal}</h3>
+  <h3 class="food-name">${food.strMeal}</h3>
   <h4>Ingredient</h4>
   `
   for (let i = 9; i <= 28; i++) {
       let ingredient = (foodDetailsObject[foodDetailsArray[i]]);
-      if(ingredient !==""){
+      console.log(ingredient);
+      if(ingredient !=="" && ingredient !== null){
     let li = document.createElement("li")
     li.innerText = ingredient
     const ul = document.createElement("ul")
